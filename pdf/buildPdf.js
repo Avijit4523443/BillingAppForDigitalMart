@@ -9,6 +9,13 @@ const createPDF = async (req, res) => {
     let ejsData = ejs.render(htmlString, req.data);
 
     pdf.create(ejsData,
+               {
+      childProcessOptions: {
+        env: {
+          OPENSSL_CONF: '/dev/null',
+        },
+      }
+    }
     ).toStream((err,stream) => {
       console.log(err);
       stream.pipe(res);
