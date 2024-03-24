@@ -93,9 +93,11 @@ const getSingleSale = async (req, res, next) => {
 const getAllSale = async (req, res, next) => {
   try {
     const getType = req.query.type;
+    const year = req.query.year;
+
     if (getType == 1) {
-      const allSales = await SaleModel.find({ owner: req.user.userId });
-      res.status(200).json({ status: true, allSales })
+      const allSales = await SaleModel.find({ owner: req.user.userId, date: { $regex: year } });
+      res.status(200).json({ status: true, allSales });
     }
     else {
       next();
