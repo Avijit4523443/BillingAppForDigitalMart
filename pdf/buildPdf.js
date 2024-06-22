@@ -1,7 +1,8 @@
 const ejs = require('ejs');
 let pdf = require('html-pdf');
 const fs = require("fs");
-const path = require('path')
+const path = require('path');
+const puppeteer = require("puppeteer");
 const createPDF = async (req, res) => {
   try {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
