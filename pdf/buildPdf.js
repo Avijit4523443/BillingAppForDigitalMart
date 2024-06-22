@@ -8,7 +8,7 @@ const createPDF = async (req, res) => {
 
     let ejsData = ejs.render(htmlString, req.data);
 
-    pdf.create(ejsData).toStream((err,stream) => {
+    pdf.create(ejsData,{"phantomPath": "./node_modules/phantomjs/bin/phantomjs"}).toStream((err,stream) => {
       console.log(err);
       stream.pipe(res);
     })
