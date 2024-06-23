@@ -1,10 +1,6 @@
 const ejs = require('ejs');
 const fs = require("fs");
 const path = require('path');
-const chromium = require("@sparticuz/chromium");
-const puppeteer = require("puppeteer-core");
-const stealthPlugin = require("puppeteer-extra-plugin-stealth");
-const puppeteerExtra = require("puppeteer-extra");
 const chromium = require("chrome-aws-lambda");
 const createPDF = async (req, res) => {
   try {
