@@ -9,8 +9,6 @@ const createPDF = async (req, res) => {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
     let ejsData = ejs.render(htmlString, req.data);
 
-    let options = {};
-
   const options = {
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
