@@ -11,21 +11,21 @@ const createPDF = async (req, res) => {
 
     let options = {};
 
-  // const options = {
-  //     args: chromium.args,
-  //     defaultViewport: chromium.defaultViewport,
-  //     executablePath: await chromium.executablePath(),
-  //     headless: chromium.headless,
-  //     ignoreHTTPSErrors: true,
-  //   }
+  const options = {
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
+    }
 
-  //   const browser = await puppeteer.launch(options);
-  //   const page = await browser.newPage();
-  //   await page.setContent(ejsData);
+    const browser = await puppeteer.launch(options);
+    const page = await browser.newPage();
+    await page.setContent(ejsData);
 
-  //   const pdf = await page.pdf({ format: 'A4' });
-  //   await browser.close()
-  //   res.set({ "Content-Type": "application/pdf" });
+    const pdf = await page.pdf({ format: 'A4' });
+    await browser.close()
+    res.set({ "Content-Type": "application/pdf" });
     res.send('pdf');
 
   }
