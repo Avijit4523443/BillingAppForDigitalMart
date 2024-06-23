@@ -20,13 +20,13 @@ const createPDF = async (req, res) => {
       ignoreHTTPSErrors: true,
     }
   
-    const browser = await puppeteerExtra.launch(options);
-    const page = await browser.newPage();
-    await page.setContent(ejsData);
+    // const browser = await puppeteerExtra.launch(options);
+    // const page = await browser.newPage();
+    // await page.setContent(ejsData);
 
-    const pdf = await page.pdf({ format: 'A4' });
-    await browser.close()
-    res.set({ "Content-Type": "application/pdf" });
+    // const pdf = await page.pdf({ format: 'A4' });
+    // await browser.close()
+    // res.set({ "Content-Type": "application/pdf" });
     res.send('pdf');
 
   }
