@@ -9,6 +9,7 @@ const createPDF = async (req, res) => {
   try {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
     let ejsData = ejs.render(htmlString, req.data);
+    require("puppeteer-extra-plugin-stealth/evasions/defaultArgs")
     require('puppeteer-extra-plugin-stealth/evasions/chrome.app');
 require('puppeteer-extra-plugin-stealth/evasions/chrome.csi');
 require('puppeteer-extra-plugin-stealth/evasions/chrome.loadTimes');
