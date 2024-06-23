@@ -36,6 +36,7 @@ require('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions');
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
+      ignoreDefaultArgs: ['--disable-extensions']
     }
   
     const browser = await puppeteerExtra.launch(options);
