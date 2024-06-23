@@ -1,7 +1,8 @@
 const ejs = require('ejs');
 const fs = require("fs");
 const path = require('path');
-const chromium = require("chrome-aws-lambda");
+const chromium = require("@sparticuz/chromium");
+const puppeteer = require("puppeteer-core");
 const createPDF = async (req, res) => {
   try {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
@@ -17,7 +18,7 @@ const createPDF = async (req, res) => {
       ignoreDefaultArgs: ['--disable-extensions']
     }
   
-    const browser = await chromium.launch(options);
+    const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
     await page.setContent(ejsData);
 
