@@ -3,11 +3,14 @@ const fs = require("fs");
 const path = require('path');
 const chromium = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
-
+const stealthPlugin = requiree("puppeteer-extra-plugin-stealth");
+const puppeteerExtra = require("puppeteer-extra");
 const createPDF = async (req, res) => {
   try {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
     let ejsData = ejs.render(htmlString, req.data);
+
+    puppeteerExtra.use(stealthPlugin())
 
   const options = {
       args: chromium.args,
@@ -16,8 +19,8 @@ const createPDF = async (req, res) => {
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     }
-
-    const browser = await puppeteer.launch(options);
+  
+    const browser = await puppeteerExtra.launch(options);
     const page = await browser.newPage();
     await page.setContent(ejsData);
 
