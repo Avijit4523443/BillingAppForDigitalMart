@@ -20,7 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.0",
     "puppeteer-core": "^6.0.0",
-    "chrome-aws-lambda": "^6.0.0",
+    "@sparticuz/chromium": "^106.0.2",
     "multer": "^1.4.5-lts.1"
   }
 }
