@@ -1,8 +1,8 @@
 const ejs = require('ejs');
 const fs = require("fs");
 const path = require('path');
-// const chromium = require("@sparticuz/chromium");
-// const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
+const puppeteer = require("puppeteer-core");
 
 const createPDF = async (req, res) => {
   try {
