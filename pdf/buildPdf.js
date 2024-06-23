@@ -3,8 +3,8 @@ const fs = require("fs");
 const path = require('path');
 const chromium = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
-const stealthPlugin = requiree("puppeteer-extra-plugin-stealth");
-const puppeteerExtra = require("puppeteer-extra");
+// const stealthPlugin = requiree("puppeteer-extra-plugin-stealth");
+// const puppeteerExtra = require("puppeteer-extra");
 const createPDF = async (req, res) => {
   try {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
