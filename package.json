@@ -21,8 +21,6 @@
     "mongoose": "^8.0.0",
     "puppeteer-core": "^19.6",
     "@sparticuz/chromium":"^110.0.1",
-    "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-stealth": "^2.11.2"
     "multer": "^1.4.5-lts.1"
   }
 }
