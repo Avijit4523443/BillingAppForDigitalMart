@@ -1,35 +1,25 @@
 const ejs = require('ejs');
+let pdf = require('html-pdf');
 const fs = require("fs");
-const path = require('path');
-const puppeteer = require("puppeteer-core");
-const chromium = require("@sparticuz/chromium");
+const path = require('path')
 const createPDF = async (req, res) => {
   try {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
+
     let ejsData = ejs.render(htmlString, req.data);
-   
 
-  const options = {
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-      ignoreDefaultArgs: ['--disable-extensions']
-    }
-  
-    const browser = await puppeteer.launch(options);
-    const page = await browser.newPage();
-    await page.setContent(ejsData);
-
-    const pdf = await page.pdf({ format: 'A4' });
-    await browser.close()
-    res.set({ "Content-Type": "application/pdf" });
-    res.send('pdf');
+    pdf.create(ejsData, {
+      childProcessOptions: {
+        env: {
+          OPENSSL_CONF: '/dev/null',
+        },
+      }
+    }).toStream((err, stream) => {
+      stream.pipe(res);
+    })
 
   }
   catch (err) {
-    console.log(err);
     if (res.saleAddedToDatabase == true) {
       return res.status(206).json({ status: true, msg: "Sale Added But Failed to generate PDF. Please try again later !" })
     }
