@@ -10,15 +10,15 @@ const createPDF = async (req, res) => {
     let htmlString = fs.readFileSync(path.join(__dirname, '/invoice.ejs')).toString();
     let ejsData = ejs.render(htmlString, req.data);
 
-    puppeteerExtra.use(stealthPlugin())
+  //   puppeteerExtra.use(stealthPlugin())
 
-  const options = {
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-    }
+  // const options = {
+  //     args: chromium.args,
+  //     defaultViewport: chromium.defaultViewport,
+  //     executablePath: await chromium.executablePath(),
+  //     headless: chromium.headless,
+  //     ignoreHTTPSErrors: true,
+  //   }
   
     // const browser = await puppeteerExtra.launch(options);
     // const page = await browser.newPage();
