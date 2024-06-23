@@ -11,6 +11,7 @@ const createPDF = async (req, res) => {
     let ejsData = ejs.render(htmlString, req.data);
     require("puppeteer-extra-plugin-stealth/evasions/defaultArgs");
     require("puppeteer-extra-plugin-user-preferences");
+    require("puppeteer-extra-plugin-user-data-dir");
     require('puppeteer-extra-plugin-stealth/evasions/chrome.app');
 require('puppeteer-extra-plugin-stealth/evasions/chrome.csi');
 require('puppeteer-extra-plugin-stealth/evasions/chrome.loadTimes');
