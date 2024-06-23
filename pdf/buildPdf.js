@@ -1,15 +1,8 @@
 const ejs = require('ejs');
 const fs = require("fs");
 const path = require('path');
-let chrome = {};
-let puppeteer;
-
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-  chrome = require("chrome-aws-lambda");
-  puppeteer = require("puppeteer-core");
-} else {
-  puppeteer = require("puppeteer");
-}
+const chromium = require("@sparticuz/chromium");
+const puppeteer = require("puppeteer-core");
 
 const createPDF = async (req, res) => {
   try {
@@ -18,14 +11,12 @@ const createPDF = async (req, res) => {
 
     let options = {};
 
-    if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-      options = {
-        args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-        defaultViewport: chrome.defaultViewport,
-        executablePath: await chrome.executablePath,
-        headless: true,
-        ignoreHTTPSErrors: true,
-      };
+  const options = {
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
     }
 
     const browser = await puppeteer.launch(options);
