@@ -19,8 +19,6 @@
     "html-pdf": "^3.0.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.0",
-    "@sparticuz/chromium": "119.0.2",
-    "puppeteer-core": "21.5.0",
     "multer": "^1.4.5-lts.1"
   }
 }
